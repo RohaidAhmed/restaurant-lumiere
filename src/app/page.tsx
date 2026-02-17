@@ -52,15 +52,22 @@ const LuxuryRestaurant = () => {
     }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 5000);
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLSelectElement
+  > = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+
 
   return (
     <div style={{
@@ -153,7 +160,7 @@ const LuxuryRestaurant = () => {
             lineHeight: '1.6',
             fontWeight: '300'
           }}>
-            An exquisite journey through contemporary French cuisine,<br/>
+            An exquisite journey through contemporary French cuisine,<br />
             where art meets gastronomy
           </p>
           <a href="#reserve" style={{
@@ -235,14 +242,14 @@ const LuxuryRestaurant = () => {
                 transition: 'transform 0.3s, box-shadow 0.3s',
                 cursor: 'pointer'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}>
                 <div style={{ fontSize: '60px', marginBottom: '20px' }}>
                   {item.image}
                 </div>
@@ -322,9 +329,9 @@ const LuxuryRestaurant = () => {
               marginBottom: '25px',
               fontFamily: 'sans-serif'
             }}>
-              Founded by Chef Jean-Pierre Rousseau, Lumière represents the pinnacle 
-              of fine dining excellence. With three Michelin stars and a passion for 
-              culinary innovation, we transform the finest seasonal ingredients into 
+              Founded by Chef Jean-Pierre Rousseau, Lumière represents the pinnacle
+              of fine dining excellence. With three Michelin stars and a passion for
+              culinary innovation, we transform the finest seasonal ingredients into
               unforgettable experiences.
             </p>
             <p style={{
@@ -334,8 +341,8 @@ const LuxuryRestaurant = () => {
               marginBottom: '25px',
               fontFamily: 'sans-serif'
             }}>
-              Our intimate 30-seat dining room offers an exclusive atmosphere where 
-              every detail is carefully orchestrated to create moments of pure 
+              Our intimate 30-seat dining room offers an exclusive atmosphere where
+              every detail is carefully orchestrated to create moments of pure
               gastronomic joy.
             </p>
             <div style={{
@@ -560,7 +567,7 @@ const LuxuryRestaurant = () => {
                     background: '#fafaf8'
                   }}
                 >
-                  {[1,2,3,4,5,6,7,8].map(num => (
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
                     <option key={num} value={num}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
                   ))}
                 </select>
@@ -652,14 +659,14 @@ const LuxuryRestaurant = () => {
               transition: 'all 0.3s',
               fontFamily: 'sans-serif'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#1a1a1a';
-              e.currentTarget.style.color = '#d4af37';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#d4af37';
-              e.currentTarget.style.color = '#1a1a1a';
-            }}>
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#d4af37';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#d4af37';
+                e.currentTarget.style.color = '#1a1a1a';
+              }}>
               REQUEST RESERVATION
             </button>
           </form>
